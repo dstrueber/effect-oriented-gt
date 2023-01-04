@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<henshin:Module xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:henshin="http://www.eclipse.org/emf/2011/Henshin" xmi:id="_XF6w8H_5EeKZZICbS5P5TQ">
+  <imports href="bank.ecore#/"/>
+  <units xsi:type="henshin:Rule" xmi:id="_dmPAkIqhEe2D1bh0htNnIw" name="PaySpecialBonus">
+    <parameters xmi:id="_x-3toIqhEe2D1bh0htNnIw" name="a" kind="VAR"/>
+    <parameters xmi:id="_x-3toYqhEe2D1bh0htNnIw" name="b" kind="VAR"/>
+    <parameters xmi:id="_x-3tooqhEe2D1bh0htNnIw" name="c" kind="VAR"/>
+    <parameters xmi:id="_x-3to4qhEe2D1bh0htNnIw" name="d" kind="VAR"/>
+    <lhs xmi:id="_dmSD4IqhEe2D1bh0htNnIw" name="Lhs">
+      <nodes xmi:id="_lxzT0IqhEe2D1bh0htNnIw" name="B" outgoing="_2GXHcIqhEe2D1bh0htNnIw _2uXioIqhEe2D1bh0htNnIw _3OhCUIqhEe2D1bh0htNnIw _3u_SIIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank"/>
+      </nodes>
+      <nodes xmi:id="_nlTRwIqhEe2D1bh0htNnIw" name="C1" incoming="_2GXHcIqhEe2D1bh0htNnIw" outgoing="_4UYeMIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_pVDYIIqhEe2D1bh0htNnIw" name="C2" incoming="_2uXioIqhEe2D1bh0htNnIw" outgoing="_9wWXoIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_rBBKsIqhEe2D1bh0htNnIw" name="C3" incoming="_3OhCUIqhEe2D1bh0htNnIw" outgoing="_96z7MIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_rsvBMIqhEe2D1bh0htNnIw" name="C4" incoming="_3u_SIIqhEe2D1bh0htNnIw" outgoing="_-FgIQIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_tpJqkIqhEe2D1bh0htNnIw" incoming="_4UYeMIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="_uTdy4IqhEe2D1bh0htNnIw" value="a">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_8xHvQIqhEe2D1bh0htNnIw" incoming="_9wWXoIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="__fAR0IqhEe2D1bh0htNnIw" value="b">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_9Fn_oIqhEe2D1bh0htNnIw" incoming="_96z7MIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="__p228IqhEe2D1bh0htNnIw" value="c">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_9YobMIqhEe2D1bh0htNnIw" incoming="_-FgIQIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="__2Y3EIqhEe2D1bh0htNnIw" value="d">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_2GXHcIqhEe2D1bh0htNnIw" source="_lxzT0IqhEe2D1bh0htNnIw" target="_nlTRwIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_2uXioIqhEe2D1bh0htNnIw" source="_lxzT0IqhEe2D1bh0htNnIw" target="_pVDYIIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_3OhCUIqhEe2D1bh0htNnIw" source="_lxzT0IqhEe2D1bh0htNnIw" target="_rBBKsIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_3u_SIIqhEe2D1bh0htNnIw" source="_lxzT0IqhEe2D1bh0htNnIw" target="_rsvBMIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_4UYeMIqhEe2D1bh0htNnIw" source="_nlTRwIqhEe2D1bh0htNnIw" target="_tpJqkIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_9wWXoIqhEe2D1bh0htNnIw" source="_pVDYIIqhEe2D1bh0htNnIw" target="_8xHvQIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_96z7MIqhEe2D1bh0htNnIw" source="_rBBKsIqhEe2D1bh0htNnIw" target="_9Fn_oIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_-FgIQIqhEe2D1bh0htNnIw" source="_rsvBMIqhEe2D1bh0htNnIw" target="_9YobMIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_dmSD4YqhEe2D1bh0htNnIw" name="Rhs">
+      <nodes xmi:id="_lxzT0YqhEe2D1bh0htNnIw" name="B" outgoing="_2GXHcYqhEe2D1bh0htNnIw _2uXioYqhEe2D1bh0htNnIw _3OhCUYqhEe2D1bh0htNnIw _3u_SIYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank"/>
+      </nodes>
+      <nodes xmi:id="_nlTRwYqhEe2D1bh0htNnIw" name="C1" incoming="_2GXHcYqhEe2D1bh0htNnIw" outgoing="_4UYeMYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_pVDYIYqhEe2D1bh0htNnIw" name="C2" incoming="_2uXioYqhEe2D1bh0htNnIw" outgoing="_9wWXoYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_rBBKsYqhEe2D1bh0htNnIw" name="C3" incoming="_3OhCUYqhEe2D1bh0htNnIw" outgoing="_96z7MYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_rsvoQIqhEe2D1bh0htNnIw" name="C4" incoming="_3u_SIYqhEe2D1bh0htNnIw" outgoing="_-FgvUIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_tpK4sIqhEe2D1bh0htNnIw" incoming="_4UYeMYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="_uTdy4YqhEe2D1bh0htNnIw" value="a+10">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_8xKLgIqhEe2D1bh0htNnIw" incoming="_9wWXoYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="_Cinz0IqiEe2D1bh0htNnIw" value="b+10">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_9Fn_oYqhEe2D1bh0htNnIw" incoming="_96z7MYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="_Di0FgIqiEe2D1bh0htNnIw" value="c+10">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_9YobMYqhEe2D1bh0htNnIw" incoming="_-FgvUIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="_EUkSkIqiEe2D1bh0htNnIw" value="d+10">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_2GXHcYqhEe2D1bh0htNnIw" source="_lxzT0YqhEe2D1bh0htNnIw" target="_nlTRwYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_2uXioYqhEe2D1bh0htNnIw" source="_lxzT0YqhEe2D1bh0htNnIw" target="_pVDYIYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_3OhCUYqhEe2D1bh0htNnIw" source="_lxzT0YqhEe2D1bh0htNnIw" target="_rBBKsYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_3u_SIYqhEe2D1bh0htNnIw" source="_lxzT0YqhEe2D1bh0htNnIw" target="_rsvoQIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_4UYeMYqhEe2D1bh0htNnIw" source="_nlTRwYqhEe2D1bh0htNnIw" target="_tpK4sIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_9wWXoYqhEe2D1bh0htNnIw" source="_pVDYIYqhEe2D1bh0htNnIw" target="_8xKLgIqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_96z7MYqhEe2D1bh0htNnIw" source="_rBBKsYqhEe2D1bh0htNnIw" target="_9Fn_oYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_-FgvUIqhEe2D1bh0htNnIw" source="_rsvoQIqhEe2D1bh0htNnIw" target="_9YobMYqhEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_lxzT0oqhEe2D1bh0htNnIw" origin="_lxzT0IqhEe2D1bh0htNnIw" image="_lxzT0YqhEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_nlTRwoqhEe2D1bh0htNnIw" origin="_nlTRwIqhEe2D1bh0htNnIw" image="_nlTRwYqhEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_pVDYIoqhEe2D1bh0htNnIw" origin="_pVDYIIqhEe2D1bh0htNnIw" image="_pVDYIYqhEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_rBBKsoqhEe2D1bh0htNnIw" origin="_rBBKsIqhEe2D1bh0htNnIw" image="_rBBKsYqhEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_rsvoQYqhEe2D1bh0htNnIw" origin="_rsvBMIqhEe2D1bh0htNnIw" image="_rsvoQIqhEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_tpK4sYqhEe2D1bh0htNnIw" origin="_tpJqkIqhEe2D1bh0htNnIw" image="_tpK4sIqhEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_8xKLgYqhEe2D1bh0htNnIw" origin="_8xHvQIqhEe2D1bh0htNnIw" image="_8xKLgIqhEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_9Fn_ooqhEe2D1bh0htNnIw" origin="_9Fn_oIqhEe2D1bh0htNnIw" image="_9Fn_oYqhEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_9YobMoqhEe2D1bh0htNnIw" origin="_9YobMIqhEe2D1bh0htNnIw" image="_9YobMYqhEe2D1bh0htNnIw"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_TmZd4IqiEe2D1bh0htNnIw" name="PaySpecialBonus3">
+    <parameters xmi:id="_TmZd4YqiEe2D1bh0htNnIw" name="a" kind="VAR"/>
+    <parameters xmi:id="_TmZd4oqiEe2D1bh0htNnIw" name="b" kind="VAR"/>
+    <parameters xmi:id="_TmZd44qiEe2D1bh0htNnIw" name="c" kind="VAR"/>
+    <lhs xmi:id="_TmZd5YqiEe2D1bh0htNnIw" name="Lhs">
+      <nodes xmi:id="_TmZd5oqiEe2D1bh0htNnIw" name="B" outgoing="_TmZd84qiEe2D1bh0htNnIw _TmZd9IqiEe2D1bh0htNnIw _TmZd9YqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank"/>
+      </nodes>
+      <nodes xmi:id="_TmZd54qiEe2D1bh0htNnIw" name="C1" incoming="_TmZd84qiEe2D1bh0htNnIw" outgoing="_TmZd94qiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_TmZd6IqiEe2D1bh0htNnIw" name="C2" incoming="_TmZd9IqiEe2D1bh0htNnIw" outgoing="_TmZd-IqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_TmZd6YqiEe2D1bh0htNnIw" name="C3" incoming="_TmZd9YqiEe2D1bh0htNnIw" outgoing="_TmZd-YqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_TmZd64qiEe2D1bh0htNnIw" incoming="_TmZd94qiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="_TmZd7IqiEe2D1bh0htNnIw" value="a">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_TmZd7YqiEe2D1bh0htNnIw" incoming="_TmZd-IqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="_TmZd7oqiEe2D1bh0htNnIw" value="b">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_TmZd74qiEe2D1bh0htNnIw" incoming="_TmZd-YqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="_TmZd8IqiEe2D1bh0htNnIw" value="c">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_TmZd84qiEe2D1bh0htNnIw" source="_TmZd5oqiEe2D1bh0htNnIw" target="_TmZd54qiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_TmZd9IqiEe2D1bh0htNnIw" source="_TmZd5oqiEe2D1bh0htNnIw" target="_TmZd6IqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_TmZd9YqiEe2D1bh0htNnIw" source="_TmZd5oqiEe2D1bh0htNnIw" target="_TmZd6YqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_TmZd94qiEe2D1bh0htNnIw" source="_TmZd54qiEe2D1bh0htNnIw" target="_TmZd64qiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_TmZd-IqiEe2D1bh0htNnIw" source="_TmZd6IqiEe2D1bh0htNnIw" target="_TmZd7YqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_TmZd-YqiEe2D1bh0htNnIw" source="_TmZd6YqiEe2D1bh0htNnIw" target="_TmZd74qiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_TmZd-4qiEe2D1bh0htNnIw" name="Rhs">
+      <nodes xmi:id="_TmZd_IqiEe2D1bh0htNnIw" name="B" outgoing="_TmZeCYqiEe2D1bh0htNnIw _TmZeCoqiEe2D1bh0htNnIw _TmZeC4qiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank"/>
+      </nodes>
+      <nodes xmi:id="_TmZd_YqiEe2D1bh0htNnIw" name="C1" incoming="_TmZeCYqiEe2D1bh0htNnIw" outgoing="_TmZeDYqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_TmZd_oqiEe2D1bh0htNnIw" name="C2" incoming="_TmZeCoqiEe2D1bh0htNnIw" outgoing="_TmZeDoqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_TmZd_4qiEe2D1bh0htNnIw" name="C3" incoming="_TmZeC4qiEe2D1bh0htNnIw" outgoing="_TmZeD4qiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_TmZeAYqiEe2D1bh0htNnIw" incoming="_TmZeDYqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="_TmZeAoqiEe2D1bh0htNnIw" value="a+10.0">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_TmZeA4qiEe2D1bh0htNnIw" incoming="_TmZeDoqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="_TmZeBIqiEe2D1bh0htNnIw" value="b+10.0">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <nodes xmi:id="_TmZeBYqiEe2D1bh0htNnIw" incoming="_TmZeD4qiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+        <attributes xmi:id="_TmZeBoqiEe2D1bh0htNnIw" value="c+10.0">
+          <type href="bank.ecore#//Account/credit"/>
+        </attributes>
+      </nodes>
+      <edges xmi:id="_TmZeCYqiEe2D1bh0htNnIw" source="_TmZd_IqiEe2D1bh0htNnIw" target="_TmZd_YqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_TmZeCoqiEe2D1bh0htNnIw" source="_TmZd_IqiEe2D1bh0htNnIw" target="_TmZd_oqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_TmZeC4qiEe2D1bh0htNnIw" source="_TmZd_IqiEe2D1bh0htNnIw" target="_TmZd_4qiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_TmZeDYqiEe2D1bh0htNnIw" source="_TmZd_YqiEe2D1bh0htNnIw" target="_TmZeAYqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_TmZeDoqiEe2D1bh0htNnIw" source="_TmZd_oqiEe2D1bh0htNnIw" target="_TmZeA4qiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_TmZeD4qiEe2D1bh0htNnIw" source="_TmZd_4qiEe2D1bh0htNnIw" target="_TmZeBYqiEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_TmZeEYqiEe2D1bh0htNnIw" origin="_TmZd5oqiEe2D1bh0htNnIw" image="_TmZd_IqiEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_TmZeEoqiEe2D1bh0htNnIw" origin="_TmZd54qiEe2D1bh0htNnIw" image="_TmZd_YqiEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_TmZeE4qiEe2D1bh0htNnIw" origin="_TmZd6IqiEe2D1bh0htNnIw" image="_TmZd_oqiEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_TmZeFIqiEe2D1bh0htNnIw" origin="_TmZd6YqiEe2D1bh0htNnIw" image="_TmZd_4qiEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_TmZeFoqiEe2D1bh0htNnIw" origin="_TmZd64qiEe2D1bh0htNnIw" image="_TmZeAYqiEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_TmZeF4qiEe2D1bh0htNnIw" origin="_TmZd7YqiEe2D1bh0htNnIw" image="_TmZeA4qiEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_TmZeGIqiEe2D1bh0htNnIw" origin="_TmZd74qiEe2D1bh0htNnIw" image="_TmZeBYqiEe2D1bh0htNnIw"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_vB72kIwOEe2D1bh0htNnIw" name="ensureThatClientHasAccount">
+    <lhs xmi:id="_vCFAgIwOEe2D1bh0htNnIw" name="Lhs">
+      <nodes xmi:id="_xXZ5IIwOEe2D1bh0htNnIw" outgoing="_zAjBMIwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank"/>
+      </nodes>
+      <nodes xmi:id="_xqdYAIwOEe2D1bh0htNnIw" incoming="_zAjBMIwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <edges xmi:id="_zAjBMIwOEe2D1bh0htNnIw" source="_xXZ5IIwOEe2D1bh0htNnIw" target="_xqdYAIwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_vCFAgYwOEe2D1bh0htNnIw" name="Rhs">
+      <nodes xmi:id="_xXZ5IYwOEe2D1bh0htNnIw" outgoing="_zAjBMYwOEe2D1bh0htNnIw _0FXUMIwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank"/>
+      </nodes>
+      <nodes xmi:id="_xqdYAYwOEe2D1bh0htNnIw" incoming="_zAjBMYwOEe2D1bh0htNnIw" outgoing="_zhPTcIwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_yIlecIwOEe2D1bh0htNnIw" incoming="_zhPTcIwOEe2D1bh0htNnIw _0FXUMIwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+      </nodes>
+      <edges xmi:id="_zAjBMYwOEe2D1bh0htNnIw" source="_xXZ5IYwOEe2D1bh0htNnIw" target="_xqdYAYwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_zhPTcIwOEe2D1bh0htNnIw" source="_xqdYAYwOEe2D1bh0htNnIw" target="_yIlecIwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_0FXUMIwOEe2D1bh0htNnIw" source="_xXZ5IYwOEe2D1bh0htNnIw" target="_yIlecIwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/accounts"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_xXZ5IowOEe2D1bh0htNnIw" origin="_xXZ5IIwOEe2D1bh0htNnIw" image="_xXZ5IYwOEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_xqdYAowOEe2D1bh0htNnIw" origin="_xqdYAIwOEe2D1bh0htNnIw" image="_xqdYAYwOEe2D1bh0htNnIw"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="__S91EIwOEe2D1bh0htNnIw" name="ensureThatClientHasNoAccount">
+    <parameters xmi:id="_DqRMgIwPEe2D1bh0htNnIw" name="c" kind="IN"/>
+    <lhs xmi:id="__S91EYwOEe2D1bh0htNnIw" name="Lhs">
+      <nodes xmi:id="__S91EowOEe2D1bh0htNnIw" outgoing="__S91FIwOEe2D1bh0htNnIw __S91G4wOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank"/>
+      </nodes>
+      <nodes xmi:id="__S91E4wOEe2D1bh0htNnIw" name="c" incoming="__S91FIwOEe2D1bh0htNnIw" outgoing="__S91GowOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="__S91GIwOEe2D1bh0htNnIw" incoming="__S91GowOEe2D1bh0htNnIw __S91G4wOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+      </nodes>
+      <edges xmi:id="__S91FIwOEe2D1bh0htNnIw" source="__S91EowOEe2D1bh0htNnIw" target="__S91E4wOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="__S91GowOEe2D1bh0htNnIw" source="__S91E4wOEe2D1bh0htNnIw" target="__S91GIwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="__S91G4wOEe2D1bh0htNnIw" source="__S91EowOEe2D1bh0htNnIw" target="__S91GIwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/accounts"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="__S91FYwOEe2D1bh0htNnIw" name="Rhs">
+      <nodes xmi:id="__S91FowOEe2D1bh0htNnIw" outgoing="__S91GYwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank"/>
+      </nodes>
+      <nodes xmi:id="__S91F4wOEe2D1bh0htNnIw" name="c" incoming="__S91GYwOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <edges xmi:id="__S91GYwOEe2D1bh0htNnIw" source="__S91FowOEe2D1bh0htNnIw" target="__S91F4wOEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="__S91HIwOEe2D1bh0htNnIw" origin="__S91EowOEe2D1bh0htNnIw" image="__S91FowOEe2D1bh0htNnIw"/>
+    <mappings xmi:id="__S91HYwOEe2D1bh0htNnIw" origin="__S91E4wOEe2D1bh0htNnIw" image="__S91F4wOEe2D1bh0htNnIw"/>
+  </units>
+  <units xsi:type="henshin:Rule" xmi:id="_-PUp8IwSEe2D1bh0htNnIw" name="ensureThatClientHasAccountAndPortfolio">
+    <lhs xmi:id="_-PUp8YwSEe2D1bh0htNnIw" name="Lhs">
+      <nodes xmi:id="_-PUp8owSEe2D1bh0htNnIw" outgoing="_-PUp9IwSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank"/>
+      </nodes>
+      <nodes xmi:id="_-PUp84wSEe2D1bh0htNnIw" incoming="_-PUp9IwSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <edges xmi:id="_-PUp9IwSEe2D1bh0htNnIw" source="_-PUp8owSEe2D1bh0htNnIw" target="_-PUp84wSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+    </lhs>
+    <rhs xmi:id="_-PUp9YwSEe2D1bh0htNnIw" name="Rhs">
+      <nodes xmi:id="_-PUp9owSEe2D1bh0htNnIw" outgoing="_-PUp-YwSEe2D1bh0htNnIw _-PUp-4wSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank"/>
+      </nodes>
+      <nodes xmi:id="_-PUp94wSEe2D1bh0htNnIw" incoming="_-PUp-YwSEe2D1bh0htNnIw" outgoing="_-PUp-owSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client"/>
+      </nodes>
+      <nodes xmi:id="_-PUp-IwSEe2D1bh0htNnIw" incoming="_-PUp-owSEe2D1bh0htNnIw _-PUp-4wSEe2D1bh0htNnIw" outgoing="__gmroIwSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account"/>
+      </nodes>
+      <nodes xmi:id="_-61sIIwSEe2D1bh0htNnIw" incoming="__gmroIwSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Portfolio"/>
+      </nodes>
+      <edges xmi:id="_-PUp-YwSEe2D1bh0htNnIw" source="_-PUp9owSEe2D1bh0htNnIw" target="_-PUp94wSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/clients"/>
+      </edges>
+      <edges xmi:id="_-PUp-owSEe2D1bh0htNnIw" source="_-PUp94wSEe2D1bh0htNnIw" target="_-PUp-IwSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Client/accounts"/>
+      </edges>
+      <edges xmi:id="_-PUp-4wSEe2D1bh0htNnIw" source="_-PUp9owSEe2D1bh0htNnIw" target="_-PUp-IwSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/accounts"/>
+      </edges>
+      <edges xmi:id="__gmroIwSEe2D1bh0htNnIw" source="_-PUp-IwSEe2D1bh0htNnIw" target="_-61sIIwSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Account/portfolio"/>
+      </edges>
+    </rhs>
+    <mappings xmi:id="_-PUp_IwSEe2D1bh0htNnIw" origin="_-PUp8owSEe2D1bh0htNnIw" image="_-PUp9owSEe2D1bh0htNnIw"/>
+    <mappings xmi:id="_-PUp_YwSEe2D1bh0htNnIw" origin="_-PUp84wSEe2D1bh0htNnIw" image="_-PUp94wSEe2D1bh0htNnIw"/>
+  </units>
+</henshin:Module>
