@@ -1,46 +1,69 @@
-package org.eclipse.emf.henshin.interpreter.matching.partial;
+package org.eclipse.emf.henshin.interpreter.loose;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.henshin.interpreter.Assignment;
 import org.eclipse.emf.henshin.interpreter.EGraph;
 import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.Match;
+import org.eclipse.emf.henshin.interpreter.impl.AssignmentImpl;
+import org.eclipse.emf.henshin.interpreter.impl.MatchImpl;
 import org.eclipse.emf.henshin.model.Attribute;
 import org.eclipse.emf.henshin.model.Edge;
 import org.eclipse.emf.henshin.model.Node;
+import org.eclipse.emf.henshin.model.Parameter;
 import org.eclipse.emf.henshin.model.Rule;
 
-public class PartialMatchFinder {
-	public Match findOneMaximalPartialMatchFromNames(Rule rule, EGraph graph, Collection<String> kernelNodeNames,
-			Engine engineImpl) {
-		Collection<Node> kernelNodes = new ArrayList<Node>();
-		for (Node n : rule.getLhs().getNodes()) {
-			if (kernelNodeNames.contains(n.getName()))
-				kernelNodes.add(n);
-		}
-		return findOneMaximalPartialMatch(rule, graph, kernelNodes, engineImpl);
+public class LooseMatchFinder {
+	Rule rule;
+	EGraph graph;
+	Engine engineImpl;
+	Map<Parameter,Object> paramValues;
+	
+	public LooseMatchFinder(Rule rule, EGraph graph, Engine engineImpl) {
+		super();
+		this.rule = rule;
+		this.graph = graph;
+		this.engineImpl = engineImpl;
+		this.paramValues = new HashMap<Parameter,Object>();
 	}
 
-	public Match findOneMaximalPartialMatch(Rule rule, EGraph graph, Collection<Node> kernelNodes, Engine engineImpl) {
-		KernelRuleInfo kernelRuleInfo = KernelRuleHandler.createKernelRule(rule, kernelNodes);
+	/**
+	 * Returns a loose match, potentially contain mappings for LHS and RHS nodes.
+	 * 
+	 * @param rule
+	 * @param graph
+	 * @param engineImpl
+	 * @return
+	 */
+	public Match findOneLooseMatch() {
+		SpecialRuleInfo kernelRuleInfo = KernelRuleHandler.createKernelRule(rule);
+		SpecialRuleInfo grayedRuleInfo = GrayedRuleHandler.createGrayedRule(rule);
 
-		Iterable<Match> kernelMatches = engineImpl.findMatches(kernelRuleInfo.getKernelRule(), graph, null);
+		Assignment assignment = KernelRuleHandler.convertParameterValues(kernelRuleInfo,paramValues);
+		Iterable<Match> kernelMatches = engineImpl.findMatches(kernelRuleInfo.getSpecialRule(), graph, new MatchImpl(assignment, false));
 		if (!kernelMatches.iterator().hasNext())
 			return null;
 
 		Match kernelMatch = kernelMatches.iterator().next();
-		Match resultMatch = KernelRuleHandler.translateMatch(kernelRuleInfo, kernelMatch);
+		Match originalMatch = KernelRuleHandler.translateMatchFromKernel(kernelRuleInfo, kernelMatch);
+		Match resultMatch = GrayedRuleHandler.translateMatchFromOriginal(grayedRuleInfo, originalMatch);
 
-		List<Node> searchPlan = getUnboundNodes(resultMatch, rule);
+		List<Node> searchPlan = getUnboundNodes(resultMatch, grayedRuleInfo.getSpecialRule());
 		for (Node n : searchPlan) {
 			EObject ex = findExtension(resultMatch, graph, n);
 			if (ex != null)
 				resultMatch.setNodeTarget(n, ex);
 		}
+
+		resultMatch = GrayedRuleHandler.translateMatchFromGrayed(grayedRuleInfo, resultMatch);
 
 		return resultMatch;
 	}
@@ -125,7 +148,7 @@ public class PartialMatchFinder {
 			String expectedValString = a.getValue();
 			Object expectedVal = null;
 			if (expectedValString.startsWith("\"") && expectedValString.endsWith("\"")) {
-				expectedVal = expectedValString.substring(1,expectedValString.length()-2);
+				expectedVal = expectedValString.substring(1, expectedValString.length() - 2);
 			}
 			try {
 				expectedVal = Double.parseDouble(expectedValString);
@@ -158,7 +181,7 @@ public class PartialMatchFinder {
 							candidateObjects);
 				} else {
 					for (EObject cand : graph.getDomain(n.getType(), false)) {
-						Object o = anchor.eGet(anchorEdge.getType());
+						Object o = cand.eGet(anchorEdge.getType());
 						if (o == anchor || (o instanceof Collection) && ((Collection) o).contains(anchor)) {
 							candidateObjects.add(cand);
 						}
@@ -179,6 +202,12 @@ public class PartialMatchFinder {
 		} else {
 			candidateObjects.add((EObject) o);
 		}
+	}
+
+	public void setParameter(String key, String value) {
+		Parameter param = rule.getParameter(key);
+		if (param != null)
+			paramValues.put(param,value);
 	}
 
 }

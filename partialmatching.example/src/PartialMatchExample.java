@@ -19,7 +19,8 @@ import org.eclipse.emf.henshin.interpreter.UnitApplication;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
-import org.eclipse.emf.henshin.interpreter.matching.partial.PartialMatchFinder;
+import org.eclipse.emf.henshin.interpreter.loose.LooseMatchFinder;
+import org.eclipse.emf.henshin.interpreter.loose.LooseRuleApplication;
 import org.eclipse.emf.henshin.interpreter.util.InterpreterUtil;
 import org.eclipse.emf.henshin.interpreter.util.PartialMatchReport;
 import org.eclipse.emf.henshin.model.Module;
@@ -45,47 +46,84 @@ public class PartialMatchExample {
 	 * @param saveResult Whether the result should be saved.
 	 */
 	public static void run(String path, boolean saveResult) {
-		for (int i = 0; i<1; i++) {
-		
-		// Create a resource set with a base directory:
-		HenshinResourceSet resourceSet = new HenshinResourceSet(path);
+		for (int i = 0; i < 1; i++) {
 
-		// Load the module:
-		Module module = resourceSet.getModule("partialmatching.henshin", false);
+			// Create a resource set with a base directory:
+			HenshinResourceSet resourceSet = new HenshinResourceSet(path);
 
-		// Load the example model into an EGraph:
-		EGraph graph = new EGraphImpl(resourceSet.getResource("example-bank.xmi"));
+			// Load the module:
+			Module module = resourceSet.getModule("partialmatching.henshin", false);
 
-		// Create an engine and a rule application:
-		Engine engine = new EngineImpl();
+			// Load the example model into an EGraph:
+			EGraph graph = new EGraphImpl(resourceSet.getResource("example-bank.xmi"));
 
-		Rule paySpecialBonusRule = (Rule) module.getUnit("PaySpecialBonus");
+			// Create an engine and a rule application:
+			Engine engine = new EngineImpl();
 
-		List<String> kernelNodeNames = Arrays.asList("B");
+			Rule ensureThatClientHasAccountRule = (Rule) module.getUnit("ensureThatClientHasAccount");
+			Rule ensureThatClientHasNoAccountRule = (Rule) module.getUnit("ensureThatClientHasNoAccount");
+			Rule ensureThatClientHasAccountAndPortfolioRule = (Rule) module
+					.getUnit("ensureThatClientHasAccountAndPortfolio");
 
-		System.out.println("\n ******************** \n ");
+			System.out.println("\n ******************** \n ");
 
-		long start = System.nanoTime();
-		PartialMatchFinder partialMatcher = new PartialMatchFinder();
-		Match m = partialMatcher.findOneMaximalPartialMatchFromNames(paySpecialBonusRule, graph, kernelNodeNames,
-				engine);
-		long totalNew = System.nanoTime() - start;
+			long start = System.nanoTime();
+			LooseMatchFinder looseMatcher;
+			looseMatcher = new LooseMatchFinder(ensureThatClientHasNoAccountRule, graph, engine);
+			looseMatcher.setParameter("c","Alice");
+			Match m1 = looseMatcher.findOneLooseMatch();
+			LooseRuleApplication app1 = new LooseRuleApplication(engine, graph, ensureThatClientHasNoAccountRule, m1);
+			System.out.println(app1.execute());
+			
+			looseMatcher.setParameter("c","Alice");
+			Match m2 = looseMatcher.findOneLooseMatch();
+			LooseRuleApplication app2 = new LooseRuleApplication(engine, graph, ensureThatClientHasNoAccountRule, m2);
+			System.out.println(app2.execute());
+			
+			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-1.xmi");
+			
+			
+			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountRule, graph, engine);
+			looseMatcher.setParameter("c","Alice");
+			Match m3 = looseMatcher.findOneLooseMatch();
+			LooseRuleApplication app3 = new LooseRuleApplication(engine, graph, ensureThatClientHasAccountRule, m3);
+			System.out.println(app3.execute());
+			
+			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountRule, graph, engine);
+			looseMatcher.setParameter("c","Alice");
+			Match m4 = looseMatcher.findOneLooseMatch();
+			LooseRuleApplication app4 = new LooseRuleApplication(engine, graph, ensureThatClientHasAccountRule, m4);
+			System.out.println(app4.execute());
 
-		System.out.println(m);
+			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-2.xmi");	
 
-		boolean runSvetlanasAlgo = false;
-		if (runSvetlanasAlgo) {
-		System.out.println("\n ******************** \n ");
+			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountAndPortfolioRule, graph, engine);
+			looseMatcher.setParameter("c","Alice");
+			Match m5 = looseMatcher.findOneLooseMatch();
+			LooseRuleApplication app5 = new LooseRuleApplication(engine, graph, ensureThatClientHasAccountAndPortfolioRule, m5);
+			System.out.println(app5.execute());
+			
+			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountAndPortfolioRule, graph, engine);
+			looseMatcher.setParameter("c","Alice");
+			Match m6 = looseMatcher.findOneLooseMatch();
+			LooseRuleApplication app6 = new LooseRuleApplication(engine, graph, ensureThatClientHasAccountAndPortfolioRule, m6);
+			System.out.println(app6.execute());
 
-		start = System.nanoTime();
-		Match m2 = InterpreterUtil.findMaximalPartialMatch(engine, module, graph);
-		long totalOld = System.nanoTime() - start;
+			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-3.xmi");
+			
+			
+			boolean runSvetlanasAlgo = false;
+			if (runSvetlanasAlgo) {
+				System.out.println("\n ******************** \n ");
 
-		System.out.println(m2);
-		
-		System.out.println("Time taken (new algo): "+totalNew);
-		System.out.println("Time taken (old algo): "+totalOld);
-		}
+				start = System.nanoTime();
+				Match mx = InterpreterUtil.findMaximalPartialMatch(engine, module, graph);
+				long totalOld = System.nanoTime() - start;
+
+
+//				System.out.println("Time taken (new algo): " + totalNew);
+				System.out.println("Time taken (old algo): " + totalOld);
+			}
 
 		}
 	}
