@@ -227,7 +227,7 @@ public class VariableInfo {
 		var.danglingConstraints.add(constraint);
 	}
 
-	private Map<EReference, Integer> getEdgeCounts(Node node, boolean incoming) {
+	public static Map<EReference, Integer> getEdgeCounts(Node node, boolean incoming) {
 
 		Collection<Edge> edges = incoming ? node.getIncoming() : node.getOutgoing();
 		Collection<Edge> oppositeEdges = incoming ? node.getOutgoing() : node.getIncoming();

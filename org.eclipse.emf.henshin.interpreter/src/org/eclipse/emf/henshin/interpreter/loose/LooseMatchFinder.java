@@ -15,6 +15,8 @@ import org.eclipse.emf.henshin.interpreter.Engine;
 import org.eclipse.emf.henshin.interpreter.Match;
 import org.eclipse.emf.henshin.interpreter.impl.AssignmentImpl;
 import org.eclipse.emf.henshin.interpreter.impl.MatchImpl;
+import org.eclipse.emf.henshin.interpreter.info.VariableInfo;
+import org.eclipse.emf.henshin.interpreter.matching.constraints.DanglingConstraint;
 import org.eclipse.emf.henshin.model.Attribute;
 import org.eclipse.emf.henshin.model.Edge;
 import org.eclipse.emf.henshin.model.Node;
@@ -57,8 +59,10 @@ public class LooseMatchFinder {
 		Match resultMatch = GrayedRuleHandler.translateMatchFromOriginal(grayedRuleInfo, originalMatch);
 
 		List<Node> searchPlan = getUnboundNodes(resultMatch, grayedRuleInfo.getSpecialRule());
+
 		for (Node n : searchPlan) {
 			EObject ex = findExtension(resultMatch, graph, n);
+			
 			if (ex != null)
 				resultMatch.setNodeTarget(n, ex);
 		}
@@ -107,7 +111,7 @@ public class LooseMatchFinder {
 		candidateObjects.removeAll(currentMatch.getNodeTargets());
 
 		for (EObject cand : candidateObjects) {
-			if (fulfillsConstraints(cand, n, currentMatch)) {
+			if (fulfillsConstraints(cand, n, currentMatch) == ConstraintCheckResult.PASSED) {
 				return cand;
 			}
 		}
@@ -115,7 +119,7 @@ public class LooseMatchFinder {
 		return null;
 	}
 
-	private boolean fulfillsConstraints(EObject cand, Node n, Match resultMatch) {
+	private ConstraintCheckResult fulfillsConstraints(EObject cand, Node n, Match resultMatch) {
 		// minimalistic constraint checking..
 		// 1. no type-constraint check. these are already covered
 		// by the candidate selection process
@@ -128,7 +132,7 @@ public class LooseMatchFinder {
 				boolean passed = (expected == real)
 						|| ((real instanceof Collection) && ((Collection) real).contains(expected));
 				if (!passed) {
-					return false;
+					return ConstraintCheckResult.FAILED;
 				}
 			}
 		}
@@ -138,11 +142,16 @@ public class LooseMatchFinder {
 				Object real = source.eGet(e.getType()); // collection or 1 EObject
 				boolean passed = (cand == real) || ((real instanceof Collection) && ((Collection) real).contains(cand));
 				if (!passed) {
-					return false;
+					return ConstraintCheckResult.FAILED;
 				}
 			}
 		}
-
+		
+		// dangling constraint checks
+		DanglingConstraint dc = retrieveDanglingConstraint(n);
+		if (!dc.check(cand, graph))
+			return ConstraintCheckResult.DANGLING_FAILED;
+		
 		// for now: only static values checked - attributes, ints, strings, floats
 		for (Attribute a : n.getAttributes()) {
 			String expectedValString = a.getValue();
@@ -163,10 +172,22 @@ public class LooseMatchFinder {
 			if (actualVal == null)
 				continue;
 			if (actualVal.equals(expectedVal))
-				return false;
+				return ConstraintCheckResult.FAILED;
 		}
 
-		return true;
+		return ConstraintCheckResult.PASSED;
+	}
+
+	private DanglingConstraint retrieveDanglingConstraint(Node n) {
+		Map<Node,DanglingConstraint> node2Constraint = new HashMap<>();
+		DanglingConstraint entry = node2Constraint.get(n);
+		if (entry == null) {
+			Map<EReference, Integer> incoming = VariableInfo.getEdgeCounts(n, true);
+			Map<EReference, Integer> outgoing = VariableInfo.getEdgeCounts(n, false);
+			entry = new DanglingConstraint(outgoing, incoming, false);
+			node2Constraint.put(n, entry);
+		}
+		return entry;
 	}
 
 	private List<EObject> determineCandidates(EGraph graph, Node n, Node anchor, Edge anchorEdge, EObject anchorObject,
