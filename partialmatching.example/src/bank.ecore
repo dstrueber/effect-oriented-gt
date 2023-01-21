@@ -8,6 +8,8 @@
         eType="#//Account" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="clients" upperBound="-1"
         eType="#//Client" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="portfolios" upperBound="-1"
+        eType="#//Portfolio" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Client" eSuperTypes="#//Person">
     <eStructuralFeatures xsi:type="ecore:EReference" name="manager" eType="#//Manager"
@@ -27,8 +29,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//Client"
         eOpposite="#//Client/accounts"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="credit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="portfolio" eType="#//Portfolio"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="portfolio" eType="#//Portfolio"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Portfolio"/>
 </ecore:EPackage>

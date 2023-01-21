@@ -74,6 +74,9 @@ public class PartialMatchExample {
 			Match m1 = looseMatcher.findOneLooseMatch();
 			LooseRuleApplication app1 = new LooseRuleApplication(engine, graph, ensureThatClientHasNoAccountRule, m1);
 			System.out.println(app1.execute());
+
+			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-1.xmi");
+			
 			
 			looseMatcher.setParameter("c","Alice");
 			Match m2 = looseMatcher.findOneLooseMatch();
@@ -81,13 +84,17 @@ public class PartialMatchExample {
 			System.out.println(app2.execute());
 			
 			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-1.xmi");
-			
+
 			
 			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountRule, graph, engine);
 			looseMatcher.setParameter("c","Alice");
 			Match m3 = looseMatcher.findOneLooseMatch();
 			LooseRuleApplication app3 = new LooseRuleApplication(engine, graph, ensureThatClientHasAccountRule, m3);
 			System.out.println(app3.execute());
+			
+
+			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-2.xmi");
+		
 			
 			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountRule, graph, engine);
 			looseMatcher.setParameter("c","Alice");
@@ -97,11 +104,17 @@ public class PartialMatchExample {
 
 			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-2.xmi");	
 
+			
 			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountAndPortfolioRule, graph, engine);
 			looseMatcher.setParameter("c","Alice");
 			Match m5 = looseMatcher.findOneLooseMatch();
 			LooseRuleApplication app5 = new LooseRuleApplication(engine, graph, ensureThatClientHasAccountAndPortfolioRule, m5);
 			System.out.println(app5.execute());
+			
+
+			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-3.xmi");	
+
+			
 			
 			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountAndPortfolioRule, graph, engine);
 			looseMatcher.setParameter("c","Alice");
@@ -110,7 +123,8 @@ public class PartialMatchExample {
 			System.out.println(app6.execute());
 
 			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-3.xmi");
-			
+
+			System.exit(0);
 			
 			boolean runSvetlanasAlgo = false;
 			if (runSvetlanasAlgo) {

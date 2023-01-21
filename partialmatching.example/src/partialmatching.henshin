@@ -105,7 +105,7 @@
       </edges>
     </lhs>
     <rhs xmi:id="_-PUp9YwSEe2D1bh0htNnIw" name="Rhs">
-      <nodes xmi:id="_-PUp9owSEe2D1bh0htNnIw" outgoing="_-PUp-YwSEe2D1bh0htNnIw _-PUp-4wSEe2D1bh0htNnIw">
+      <nodes xmi:id="_-PUp9owSEe2D1bh0htNnIw" outgoing="_-PUp-YwSEe2D1bh0htNnIw _-PUp-4wSEe2D1bh0htNnIw _DzuoYJKPEe2IDskgBOacew">
         <type href="bank.ecore#//Bank"/>
       </nodes>
       <nodes xmi:id="_-PUp94wSEe2D1bh0htNnIw" incoming="_-PUp-YwSEe2D1bh0htNnIw" outgoing="_-PUp-owSEe2D1bh0htNnIw">
@@ -117,7 +117,7 @@
       <nodes xmi:id="_-PUp-IwSEe2D1bh0htNnIw" incoming="_-PUp-owSEe2D1bh0htNnIw _-PUp-4wSEe2D1bh0htNnIw" outgoing="__gmroIwSEe2D1bh0htNnIw">
         <type href="bank.ecore#//Account"/>
       </nodes>
-      <nodes xmi:id="_-61sIIwSEe2D1bh0htNnIw" incoming="__gmroIwSEe2D1bh0htNnIw">
+      <nodes xmi:id="_-61sIIwSEe2D1bh0htNnIw" incoming="__gmroIwSEe2D1bh0htNnIw _DzuoYJKPEe2IDskgBOacew">
         <type href="bank.ecore#//Portfolio"/>
       </nodes>
       <edges xmi:id="_-PUp-YwSEe2D1bh0htNnIw" source="_-PUp9owSEe2D1bh0htNnIw" target="_-PUp94wSEe2D1bh0htNnIw">
@@ -131,6 +131,9 @@
       </edges>
       <edges xmi:id="__gmroIwSEe2D1bh0htNnIw" source="_-PUp-IwSEe2D1bh0htNnIw" target="_-61sIIwSEe2D1bh0htNnIw">
         <type href="bank.ecore#//Account/portfolio"/>
+      </edges>
+      <edges xmi:id="_DzuoYJKPEe2IDskgBOacew" source="_-PUp9owSEe2D1bh0htNnIw" target="_-61sIIwSEe2D1bh0htNnIw">
+        <type href="bank.ecore#//Bank/portfolios"/>
       </edges>
     </rhs>
     <mappings xmi:id="_-PUp_IwSEe2D1bh0htNnIw" origin="_-PUp8owSEe2D1bh0htNnIw" image="_-PUp9owSEe2D1bh0htNnIw"/>
