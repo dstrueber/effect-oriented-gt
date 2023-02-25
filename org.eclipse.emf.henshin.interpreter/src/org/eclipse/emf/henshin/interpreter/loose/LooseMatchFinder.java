@@ -250,23 +250,24 @@ public class LooseMatchFinder {
 
 		Collection<EObject> candidates = findExtensionCandidates(currentMappings, graph, n);
 		if (!candidates.isEmpty()) {
-//			 1. wiederhole, solange es noch neue gültige Teil-Lösungsschritte gibt:
-//		     a) wähle einen neuen gültigen Teil-Lösungsschritt
+//		 1. wiederhole, solange es noch neue gültige Teil-Lösungsschritte gibt:
+//		 a) wähle einen neuen gültigen Teil-Lösungsschritt
 			for (EObject x : candidates) {
-//		     b) falls Wahl gültig ist: I) erweitere Vektor um Wahl;
+//		 b) falls Wahl gültig ist: I) erweitere Vektor um Wahl;
 				Map<Node, EObject> currentMappingsExtended = new HashMap<>(currentMappings);
 				currentMappingsExtended.put(n, x);
 
-//           II) falls Vektor vollständig ist, return true; // Lösung gefunden!
+//      	 II) falls Vektor vollständig ist, return true; // Lösung gefunden!
 				if (position == unboundNodeList.size() - 1) {
 					if (checkDanglingPostponed(rule, graph, currentMappingsExtended))
 						return currentMappingsExtended;
 					else
-						return null;
+//		 sonst mache Wahl rückgängig; // nächster Kandidat aus for-Schleife dran
+						currentMappingsExtended.remove(n);
 				}
 //               sonst: falls (FindeLösung(Stufe+1, Vektor)) return true; // Lösung!
 				else {
-					Map<Node, EObject> nextSolution = findExtension(rule, currentMappingsExtended, graph,
+					Map<Node, EObject> nextSolution = findExtension(rule, currentMappingsExtended, graph, 
 							unboundNodeList, position + 1);
 					if (nextSolution != null) {
 						return nextSolution;
@@ -276,9 +277,12 @@ public class LooseMatchFinder {
 					}
 				}
 			}
-		} else { // d.h., falls candidates == empty
+		} else  { //d.h., falls candidates == empty
 			if (position == unboundNodeList.size() - 1) {
-				return currentMappings;
+				if (checkDanglingPostponed(rule, graph, currentMappings))
+					return currentMappings;
+				else
+					return null;
 			} else {
 				return findExtension(rule, currentMappings, graph, unboundNodeList, position + 1);
 			}
