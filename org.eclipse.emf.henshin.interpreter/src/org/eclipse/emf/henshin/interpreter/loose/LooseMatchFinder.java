@@ -320,7 +320,7 @@ public class LooseMatchFinder {
 					}
 				}
 
-				if (!dc.check(solution.get(n), graph))
+				if (solution.get(n) != null && !dc.check(solution.get(n), graph))
 					return false;
 
 				// restore original edge counts
