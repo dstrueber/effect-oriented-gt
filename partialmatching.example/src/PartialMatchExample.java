@@ -19,8 +19,8 @@ import org.eclipse.emf.henshin.interpreter.UnitApplication;
 import org.eclipse.emf.henshin.interpreter.impl.EGraphImpl;
 import org.eclipse.emf.henshin.interpreter.impl.EngineImpl;
 import org.eclipse.emf.henshin.interpreter.impl.UnitApplicationImpl;
-import org.eclipse.emf.henshin.interpreter.loose.LooseMatchFinder;
-import org.eclipse.emf.henshin.interpreter.loose.LooseRuleApplication;
+import org.eclipse.emf.henshin.interpreter.loose.LocallyCompleteMatchFinder;
+import org.eclipse.emf.henshin.interpreter.loose.EffectOrientedRuleApplication;
 import org.eclipse.emf.henshin.interpreter.util.InterpreterUtil;
 import org.eclipse.emf.henshin.interpreter.util.PartialMatchReport;
 import org.eclipse.emf.henshin.model.Module;
@@ -28,9 +28,8 @@ import org.eclipse.emf.henshin.model.Rule;
 import org.eclipse.emf.henshin.model.resource.HenshinResourceSet;
 
 /**
- * Bank example for the Henshin interpreter. Shows the usage of the interpreter.
- * 
- * @author Christian Krause
+ * Basd on the bank example for the Henshin interpreter:
+ * https://wiki.eclipse.org/Henshin/Examples/Bank_Accounts
  */
 public class PartialMatchExample {
 
@@ -68,47 +67,47 @@ public class PartialMatchExample {
 			System.out.println("\n ******************** \n ");
 
 			long start = System.nanoTime();
-			LooseMatchFinder looseMatcher;
-			looseMatcher = new LooseMatchFinder(ensureThatClientHasNoAccountRule, graph, engine);
-			looseMatcher.setParameter("c","Alice");
-			Match m1 = looseMatcher.findOneLooseMatch();
-			LooseRuleApplication app1 = new LooseRuleApplication(engine, graph, ensureThatClientHasNoAccountRule, m1);
+			LocallyCompleteMatchFinder localMatcher;
+			localMatcher = new LocallyCompleteMatchFinder(ensureThatClientHasNoAccountRule, graph, engine);
+			localMatcher.setParameter("c","Alice");
+			Match m1 = localMatcher.findLocallyCompleteMatch();
+			EffectOrientedRuleApplication app1 = new EffectOrientedRuleApplication(engine, graph, ensureThatClientHasNoAccountRule, m1);
 			System.out.println(app1.execute());
 
 			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-1.xmi");
 			
 			
-			looseMatcher.setParameter("c","Alice");
-			Match m2 = looseMatcher.findOneLooseMatch();
-			LooseRuleApplication app2 = new LooseRuleApplication(engine, graph, ensureThatClientHasNoAccountRule, m2);
+			localMatcher.setParameter("c","Alice");
+			Match m2 = localMatcher.findLocallyCompleteMatch();
+			EffectOrientedRuleApplication app2 = new EffectOrientedRuleApplication(engine, graph, ensureThatClientHasNoAccountRule, m2);
 			System.out.println(app2.execute());
 			
 			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-1.xmi");
 
 			
-			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountRule, graph, engine);
-			looseMatcher.setParameter("c","Alice");
-			Match m3 = looseMatcher.findOneLooseMatch();
-			LooseRuleApplication app3 = new LooseRuleApplication(engine, graph, ensureThatClientHasAccountRule, m3);
+			localMatcher = new LocallyCompleteMatchFinder(ensureThatClientHasAccountRule, graph, engine);
+			localMatcher.setParameter("c","Alice");
+			Match m3 = localMatcher.findLocallyCompleteMatch();
+			EffectOrientedRuleApplication app3 = new EffectOrientedRuleApplication(engine, graph, ensureThatClientHasAccountRule, m3);
 			System.out.println(app3.execute());
 			
 
 			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-2.xmi");
 		
 			
-			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountRule, graph, engine);
-			looseMatcher.setParameter("c","Alice");
-			Match m4 = looseMatcher.findOneLooseMatch();
-			LooseRuleApplication app4 = new LooseRuleApplication(engine, graph, ensureThatClientHasAccountRule, m4);
+			localMatcher = new LocallyCompleteMatchFinder(ensureThatClientHasAccountRule, graph, engine);
+			localMatcher.setParameter("c","Alice");
+			Match m4 = localMatcher.findLocallyCompleteMatch();
+			EffectOrientedRuleApplication app4 = new EffectOrientedRuleApplication(engine, graph, ensureThatClientHasAccountRule, m4);
 			System.out.println(app4.execute());
 
 			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-2.xmi");	
 
 			
-			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountAndPortfolioRule, graph, engine);
-			looseMatcher.setParameter("c","Alice");
-			Match m5 = looseMatcher.findOneLooseMatch();
-			LooseRuleApplication app5 = new LooseRuleApplication(engine, graph, ensureThatClientHasAccountAndPortfolioRule, m5);
+			localMatcher = new LocallyCompleteMatchFinder(ensureThatClientHasAccountAndPortfolioRule, graph, engine);
+			localMatcher.setParameter("c","Alice");
+			Match m5 = localMatcher.findLocallyCompleteMatch();
+			EffectOrientedRuleApplication app5 = new EffectOrientedRuleApplication(engine, graph, ensureThatClientHasAccountAndPortfolioRule, m5);
 			System.out.println(app5.execute());
 			
 
@@ -116,10 +115,10 @@ public class PartialMatchExample {
 
 			
 			
-			looseMatcher = new LooseMatchFinder(ensureThatClientHasAccountAndPortfolioRule, graph, engine);
-			looseMatcher.setParameter("c","Alice");
-			Match m6 = looseMatcher.findOneLooseMatch();
-			LooseRuleApplication app6 = new LooseRuleApplication(engine, graph, ensureThatClientHasAccountAndPortfolioRule, m6);
+			localMatcher = new LocallyCompleteMatchFinder(ensureThatClientHasAccountAndPortfolioRule, graph, engine);
+			localMatcher.setParameter("c","Alice");
+			Match m6 = localMatcher.findLocallyCompleteMatch();
+			EffectOrientedRuleApplication app6 = new EffectOrientedRuleApplication(engine, graph, ensureThatClientHasAccountAndPortfolioRule, m6);
 			System.out.println(app6.execute());
 
 			resourceSet.saveEObject(graph.getRoots().get(0), "example-result-3.xmi");

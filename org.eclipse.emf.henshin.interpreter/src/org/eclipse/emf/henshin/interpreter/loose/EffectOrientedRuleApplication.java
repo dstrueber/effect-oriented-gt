@@ -7,13 +7,13 @@ import org.eclipse.emf.henshin.interpreter.RuleApplication;
 import org.eclipse.emf.henshin.interpreter.impl.RuleApplicationImpl;
 import org.eclipse.emf.henshin.model.Rule;
 
-public class LooseRuleApplication {
+public class EffectOrientedRuleApplication {
 	private Engine engine;
 	private EGraph graph;
 	private Rule rule;
 	private Match partialMatch;
 
-	public LooseRuleApplication(Engine engine, EGraph graph, Rule rule, Match partialMatch) {
+	public EffectOrientedRuleApplication(Engine engine, EGraph graph, Rule rule, Match partialMatch) {
 		this.engine = engine;
 		this.graph = graph;
 		this.rule = rule;

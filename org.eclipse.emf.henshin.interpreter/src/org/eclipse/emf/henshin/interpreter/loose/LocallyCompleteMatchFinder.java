@@ -25,13 +25,13 @@ import org.eclipse.emf.henshin.model.Node;
 import org.eclipse.emf.henshin.model.Parameter;
 import org.eclipse.emf.henshin.model.Rule;
 
-public class LooseMatchFinder {
+public class LocallyCompleteMatchFinder {
 	Rule rule;
 	EGraph graph;
 	Engine engineImpl;
 	Map<Parameter, Object> paramValues;
 
-	public LooseMatchFinder(Rule rule, EGraph graph, Engine engineImpl) {
+	public LocallyCompleteMatchFinder(Rule rule, EGraph graph, Engine engineImpl) {
 		super();
 		this.rule = rule;
 		this.graph = graph;
@@ -47,7 +47,7 @@ public class LooseMatchFinder {
 	 * @param engineImpl
 	 * @return
 	 */
-	public Match findOneLooseMatch() {
+	public Match findLocallyCompleteMatch() {
 		SpecialRuleInfo kernelRuleInfo = KernelRuleHandler.createKernelRule(rule);
 		SpecialRuleInfo grayedRuleInfo = GrayedRuleHandler.createGrayedRule(rule);
 
